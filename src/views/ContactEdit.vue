@@ -1,5 +1,12 @@
 <template>
-    <form @submit.prevent="save" v-if="contact" class="contact-edit">
+<div class="contact-edit">
+    <div class="btn-edit">
+       <a href=""><button @click="onRemoveContact(contact._id)">Delet</button></a> 
+        <RouterLink to="/contact">
+            <button>Back</button>
+        </RouterLink>
+    </div>
+    <form @submit.prevent="save" v-if="contact" class="form-edit">
         <label for="contact.name">name:
             <input v-model="contact.name" type="text" id="contact.name">
         </label>
@@ -11,10 +18,7 @@
         </label>
         <button>Save</button>
     </form>
-    <RouterLink to="/contact">
-        <button>Back</button>
-    </RouterLink>
-    <button @click="onRemoveContact(contact._id)">Delet</button>
+</div>
 </template>
 
 <script>
@@ -44,11 +48,12 @@ export default {
    },
    async created() {
        const contactId = this.$route.params.id
+       console.log('contactId:', contactId)
        if(contactId) {
-           this.contact = getContact
-        //    await contactService.getContactById(contactId)
+        //    this.contact = getContact
+            this.contact = await contactService.getContactById(contactId)
        } else {
-           this.contact = contactService.getEmptyContact()
+            this.contact = contactService.getEmptyContact()
        }
    }
 }
@@ -56,9 +61,28 @@ export default {
 
 
 <style lang="scss" scoped>
+
 .contact-edit{
     display: grid;
-    gap: 15px;
-}
+    align-content: space-around;
+    .btn-edit{
+        display: flex;
+        justify-content: space-around;
+        *{
+            width: 100px;
+            height: 30px;
+            padding: 6px;
+        }
 
+    }
+
+    .form-edit{
+        display: grid;
+        gap: 15px;
+        align-content: center;
+        color: white;
+        text-shadow: 0.5px 0.5px 1px black;
+
+    }
+}
 </style>
