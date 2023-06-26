@@ -1,22 +1,22 @@
 <template>
     <header class="app-header">
       <nav class="nav-header">
-        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/home">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/contact">Contact</RouterLink>
         <RouterLink to="/stats">Statistics</RouterLink>
 
       </nav>
       <div class="information">
-        <!-- <p>Exchange Rate: {{ rate }} </p> -->
-        <FaBitcoin/>
+        <p>Exchange Rate: {{ rate }} </p>
+        <BiCurrencyBitcoin/>
+        <RouterLink to="/">{{ name }}</RouterLink>
         <!-- <p>{{ name }} </p> -->
       </div>
   </header>
 </template>
 
 <script>
-import { FaBitcoin } from "oh-vue-icons/icons";
 import { bitcoinService } from '../services/bitcoin.service.js'
 import { userService } from '../services/user.service'
 export default{
@@ -26,6 +26,7 @@ export default{
       name: null,
     }
   },
+  
   components() {FaBitcoin},
   async created() {
     this.rate = await bitcoinService.getRate()

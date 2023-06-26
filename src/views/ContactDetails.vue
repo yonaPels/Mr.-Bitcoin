@@ -7,16 +7,24 @@
         <RouterLink to="/contact">
             <button>Back</button>
         </RouterLink>
+        <div>
+            רוצה לפנק את {{ contact.name }} ?
+            <TransferFunds :contact="contact"/>
+        </div>
+        <TransactionList></TransactionList>
     </article>
 </template>
 
 <script>
 import { contactService } from '@/services/contact.service.js'
+import TransferFunds from '../cmps/TransferFunds.vue'
+import TransactionList from '@/cmps/TransactionList.vue'
 
 export default {
     data() {
         return {
             contact: null,
+            name:null,
         }
     },
     async created() {
@@ -26,7 +34,11 @@ export default {
     methods:{
         getRobotImage(name) {
       return `https://robohash.org/${name}`;
+        }
     },
+    components:{
+        TransferFunds,
+        TransactionList,
     }
 }
 </script>

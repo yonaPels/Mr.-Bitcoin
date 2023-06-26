@@ -16,12 +16,14 @@
         </div>
     </div>
     </div>
+    <TransactionList/>
 </template>
 
 <script>
 import { bitcoinService } from '../services/bitcoin.service.js'
 import { userService } from '../services/user.service.js'
 import Hero from '../cmps/Hero.vue'
+import TransactionList from '../cmps/TransactionList.vue'
 
 export default {
     data() {
@@ -36,7 +38,10 @@ export default {
         this.name = userService.getUser().name
         this.balance = userService.getUser().balance
   },
-  components:{Hero}
+  components:{
+    Hero,
+    TransactionList
+}
 }
 
 </script>

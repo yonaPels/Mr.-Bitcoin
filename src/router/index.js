@@ -4,12 +4,18 @@ import ContactIndex from '@/views/ContactIndex.vue'
 import ContactDetails from '@/views/ContactDetails.vue'
 import ContactEdit from '@/views/ContactEdit.vue'
 import Chart from '@/views/Chart.vue'
+import Login from '@/views/Login.vue'
 
 const routerOptions = {
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/home',
       name: 'home',
       component: HomeView
     },
